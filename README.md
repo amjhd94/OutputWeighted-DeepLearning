@@ -1,7 +1,7 @@
 # Output-weighted deep learning
-Among the problems that are often encountered in deep learning problems are overfitting and underfitting. The issue in forecasting, regression and danger map identification problems is that the consistent rare and extreme events have to be model due to their significance. However, the naive approach of training the model for "long" times lead to overfitting which limits versatility and generalization of the end model. Therefore, an uncenventional deep learning algortim is needed that is able to train the model on rare and extreme events as well as the frequent events without the problem of overfitting, thereby creating a robust model that can be used for prediction. 
+Among the problems that are often encountered in deep learning problems are overfitting and underfitting. The issue in forecasting, regression and danger map identification problems is that the consistent rare and extreme events have to be model due to their significance. However, the naive approach of training the model for "long" times lead to overfitting which limits versatility and generalization of the end model. Therefore, an unconventional deep learning algorithm is needed that is able to train the model on rare and extreme events as well as the frequent events without the problem of overfitting, thereby creating a robust model that can be used for prediction. 
 
-In this project, there two demo codes that implement output-weighted deep learning algorithm in a regression problem (`OW_regression.py`) and a stochsatic forecasting problem ('OW_SDE_forecast.py').
+In this project, there two demo codes that implement output-weighted deep learning algorithm in a regression problem (`OW_regression.py`) and a stochastic forecasting problem ('OW_SDE_forecast.py').
 
 ## Getting Started
 The codes were written, run and tested by Spyder IDE version 4.2.5.
@@ -18,7 +18,7 @@ pip install seaborn==0.11.2
 With the packages installed, the code is ready to run.
 
 ## Tutorial
-I will be going over only the `OW_regression.py` demo code since the basic idea for both demo codes is similar. We consider a 1-dimensional regession problem that is noise-polluted and contains an outlier that needs to be modeled. The figure below depicts the aforementioned dataset:
+I will be going over only the `OW_regression.py` demo code since the basic idea for both demo codes is similar. We consider a 1-dimensional regression problem that is noise-polluted and contains an outlier that needs to be modeled. The figure below depicts the aforementioned dataset:
 
 <img src="https://user-images.githubusercontent.com/110791799/185227780-275f0c0a-cadc-43db-92ab-109f92bcdb5e.png" alt="orig_ds" width="500"/>
 
@@ -78,7 +78,7 @@ train_acc_metric = keras.metrics.MeanSquaredError()
 val_acc_metric = keras.metrics.MeanSquaredError()
 ```
 
-4- This is the important step where we create the output-weighted loss function and training step. There are three different loss functions that can be used here. One is the typicall **mean swuared error**. The other is the output weighted loss function which weighs the prediction error of each true output value by the inverse of the probability of its occurrence. And the last loss function is the combination of the two previous loss functions. The custom loss function, 'loss_fn' is then fed to the 'train_step' function which in turn uses it in the forward pass and the back propagation to update the model weights accordingly.
+4- This is the important step where we create the output-weighted loss function and training step. There are three different loss functions that can be used here. One is the typical **mean squared error**. The other is the output weighted loss function which weighs the prediction error of each true output value by the inverse of the probability of its occurrence. And the last loss function is the combination of the two previous loss functions. The custom loss function, 'loss_fn' is then fed to the 'train_step' function which in turn uses it in the forward pass and the back propagation to update the model weights accordingly.
 
 ```py
 def loss_fn(y_pred, y_true, py, loss_type='MSE'):
