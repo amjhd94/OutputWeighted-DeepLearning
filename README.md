@@ -4,7 +4,7 @@ Among the problems that are often encountered in deep learning problems are over
 In this project, there two demo codes that implement output-weighted deep learning algorithm in a regression problem (`OW_regression.py`) and a stochsatic forecasting problem ('OW_SDE_forecast.py').
 
 ## Getting Started
-The codes was written, run and tested by Spyder IDE version 4.2.5.
+The codes were written, run and tested by Spyder IDE version 4.2.5.
 The following is the required packages for this project:
 ```bash
 pip install numpy==1.21.2
