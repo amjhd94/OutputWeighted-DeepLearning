@@ -25,7 +25,7 @@ I will be going over only the `OW_regression.py` demo code since the basic idea 
 I will show the predictions of a typically trained deep neural network based on "**MSE**" loss function and compare it with that of a deep neural network trained based on an "**output weighted**" loss function that weighs errors with the "**inverse of the occurrence probability**" of their corresponding true values.
 
 
-1- We first begin by importing the required modules:
+### 1- We first begin by importing the required modules:
 ```import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -40,7 +40,7 @@ np.random.seed(410)
 tf.keras.backend.set_floatx('float64')
 ```
 
-2- Next, we create the noisy dataset with a rare event as shown in the figure above:
+### 2- Next, we create the noisy dataset with a rare event as shown in the figure above:
 ```py
 data_size = 2048
 noise_size = 512
@@ -61,7 +61,7 @@ y = y + Sum
 y[noise_idx] = y[noise_idx] + noise_vals
 ```
 
-3- Next, we create the deep neural network model, set the learning parameter and the accuracy metrics to track:
+### 3- Next, we create the deep neural network model, set the learning parameter and the accuracy metrics to track:
 ```py
 inputs = keras.Input(shape=(1,), name="input")
 x = layers.Dense(4, activation="swish")(inputs)
@@ -78,7 +78,7 @@ train_acc_metric = keras.metrics.MeanSquaredError()
 val_acc_metric = keras.metrics.MeanSquaredError()
 ```
 
-4- This is the important step where we create the output-weighted loss function and training step. There are three different loss functions that can be used here. One is the typical **mean squared error**. The other is the output weighted loss function which weighs the prediction error of each true output value by the inverse of the probability of its occurrence. And the last loss function is the combination of the two previous loss functions. The custom loss function, 'loss_fn' is then fed to the 'train_step' function which in turn uses it in the forward pass and the back propagation to update the model weights accordingly.
+### 4- This is the important step where we create the output-weighted loss function and training step. There are three different loss functions that can be used here. One is the typical **mean squared error**. The other is the output weighted loss function which weighs the prediction error of each true output value by the inverse of the probability of its occurrence. And the last loss function is the combination of the two previous loss functions. The custom loss function, 'loss_fn' is then fed to the 'train_step' function which in turn uses it in the forward pass and the back propagation to update the model weights accordingly.
 
 ```py
 def loss_fn(y_pred, y_true, py, loss_type='MSE'):
@@ -108,7 +108,7 @@ def train_step(x, y, py, loss_type='MSE'):
     return loss_value
 ```
 
-5- Now, we train our model with the different training algorithms defined above. The trainings are done under the same conditions except for the training algorithms to offer better grounds for comparison.
+### 5- Now, we train our model with the different training algorithms defined above. The trainings are done under the same conditions except for the training algorithms to offer better grounds for comparison.
 ```py
 loss_types = ['MSE', 'PW', 'MIXED']
 # ============= Select 0, 1 or 2 to select different train algorithms ============= #
